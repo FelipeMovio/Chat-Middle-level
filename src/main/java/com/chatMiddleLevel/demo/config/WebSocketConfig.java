@@ -1,4 +1,4 @@
-package com.felipemovio.chat.config;
+package com.chatMiddleLevel.demo.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
