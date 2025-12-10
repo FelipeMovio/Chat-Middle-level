@@ -1,7 +1,6 @@
 package com.chatMiddleLevel.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +19,22 @@ import java.util.List;
 @Table(name = "usuarios")
 @Entity
 public class User implements UserDetails {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Integer idade;
+
+    @Column(unique = true)
+    private String email;
+
+    private String senha;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles = new HashSet<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
